@@ -1,0 +1,9 @@
+Managers with at least 5 direct reports
+SELECT a.name 
+FROM employee a
+INNER JOIN (
+    SELECT managerId, COUNT(*) AS directReports
+    FROM Employee
+    GROUP BY managerId
+    HAVING COUNT(*) >= 5
+) b ON a.Id = b.managerId;
